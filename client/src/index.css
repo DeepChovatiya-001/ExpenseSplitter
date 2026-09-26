@@ -1,0 +1,188 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary-color: #06b6d4;
+  --accent-color: #10b981;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --heading-font: 'Outfit', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: #0b0f19;
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-title {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+  background: rgba(18, 24, 38, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.glass-card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+}
+
+/* Custom Buttons */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
+}
+
+.btn-secondary-gradient {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary-gradient:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Badge Styles */
+.badge-creditor {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.badge-debtor {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.badge-settled {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Form Control Customization */
+.form-control-custom {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-control-custom:focus {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+.form-label-custom {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Auth Layout */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-gradient);
+  padding: 2rem 1rem;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 440px;
+  padding: 2.5rem;
+}
+
+/* Navbar */
+.app-navbar {
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.8rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Transaction Arrows */
+.arrow-icon {
+  color: #6366f1;
+  margin: 0 0.5rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
