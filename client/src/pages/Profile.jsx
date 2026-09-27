@@ -3,7 +3,8 @@ import { Container, Card, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import Navbar from '../components/Navbar';
-import { User, Phone, Calendar, LogOut, ArrowLeft } from 'lucide-react';
+import ThemeToggle from '../components/ThemeToggle';
+import { Phone, Calendar, LogOut, ArrowLeft } from 'lucide-react';
 import { formatDate, getInitials } from '../utils/formatters';
 
 const Profile = () => {
@@ -25,13 +26,13 @@ const Profile = () => {
             as={Link}
             to="/dashboard"
             variant="link"
-            className="text-secondary p-0 text-decoration-none d-flex align-items-center gap-1"
+            className="text-muted-custom p-0 text-decoration-none d-flex align-items-center gap-1"
           >
             <ArrowLeft size={18} /> Back to Dashboard
           </Button>
         </div>
 
-        <Card className="glass-card border-0 text-light p-4 text-center">
+        <Card className="glass-card border-0 p-4 text-center">
           <div className="d-flex justify-content-center mb-3">
             <div
               className="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white fs-2 shadow-lg"
@@ -45,34 +46,39 @@ const Profile = () => {
             </div>
           </div>
 
-          <h3 className="fw-bold text-light mb-1">{user?.name}</h3>
-          <p className="text-secondary small mb-4">Expense Splitter Member</p>
+          <h3 className="fw-bold text-main mb-1">{user?.name}</h3>
+          <p className="text-muted-custom small mb-4">Expense Splitter Member</p>
 
           <div
             className="p-3 rounded-3 text-start mb-4"
-            style={{ background: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.08)' }}
+            style={{ background: 'var(--feature-card-bg)', border: '1px solid var(--feature-card-border)' }}
           >
-            <div className="d-flex align-items-center gap-3 py-2 border-bottom border-secondary">
-              <Phone size={20} className="text-indigo-400" style={{ color: '#818cf8' }} />
+            <div className="d-flex align-items-center gap-3 py-2 border-bottom theme-divider">
+              <Phone size={20} style={{ color: '#6366f1' }} />
               <div>
-                <div className="text-secondary micro-text" style={{ fontSize: '0.75rem' }}>Mobile Number</div>
-                <div className="fw-semibold text-light">{user?.mobileNumber}</div>
+                <div className="text-muted-custom micro-text" style={{ fontSize: '0.75rem' }}>Mobile Number</div>
+                <div className="fw-semibold text-main">{user?.mobileNumber}</div>
               </div>
             </div>
 
-            <div className="d-flex align-items-center gap-3 py-2">
-              <Calendar size={20} className="text-indigo-400" style={{ color: '#818cf8' }} />
+            <div className="d-flex align-items-center gap-3 py-2 border-bottom theme-divider">
+              <Calendar size={20} style={{ color: '#6366f1' }} />
               <div>
-                <div className="text-secondary micro-text" style={{ fontSize: '0.75rem' }}>Member Since</div>
-                <div className="fw-semibold text-light">{formatDate(user?.createdAt)}</div>
+                <div className="text-muted-custom micro-text" style={{ fontSize: '0.75rem' }}>Member Since</div>
+                <div className="fw-semibold text-main">{formatDate(user?.createdAt)}</div>
               </div>
+            </div>
+
+            <div className="d-flex align-items-center justify-content-between py-2">
+              <div className="text-muted-custom small fw-medium">Appearance Theme</div>
+              <ThemeToggle showLabel={true} />
             </div>
           </div>
 
           <Button
             variant="outline-danger"
             onClick={handleLogout}
-            className="w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+            className="w-100 py-2 d-flex align-items-center justify-content-center gap-2 rounded-3"
           >
             <LogOut size={18} />
             <span>Log Out</span>

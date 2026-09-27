@@ -7,7 +7,7 @@ import BalanceCard from '../components/BalanceCard';
 import SettlementList from '../components/SettlementList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
-import { ArrowLeft, Calculator, ShieldCheck, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Calculator, RefreshCw } from 'lucide-react';
 
 const Settlement = () => {
   const { id: tripId } = useParams();
@@ -53,14 +53,14 @@ const Settlement = () => {
             as={Link}
             to={`/trips/${tripId}`}
             variant="link"
-            className="text-secondary p-0 text-decoration-none d-flex align-items-center gap-1"
+            className="text-muted-custom p-0 text-decoration-none d-flex align-items-center gap-1"
           >
             <ArrowLeft size={18} /> Back to Trip Details
           </Button>
 
           <Button
             variant="link"
-            className="text-secondary p-0 text-decoration-none small d-flex align-items-center gap-1"
+            className="text-muted-custom p-0 text-decoration-none small d-flex align-items-center gap-1"
             onClick={fetchSettlement}
           >
             <RefreshCw size={14} /> Recalculate
@@ -70,7 +70,7 @@ const Settlement = () => {
         <ErrorMessage message={error} onClose={() => setError('')} />
 
         {/* Title Banner */}
-        <Card className="glass-card border-0 text-light p-4 mb-4">
+        <Card className="glass-card border-0 p-4 mb-4">
           <div className="d-flex align-items-center gap-3">
             <div
               className="d-flex align-items-center justify-content-center rounded-3 p-3 shadow-lg"
@@ -79,10 +79,10 @@ const Settlement = () => {
               <Calculator size={32} className="text-white" />
             </div>
             <div>
-              <h2 className="fw-bold brand-title mb-1">
+              <h2 className="fw-bold brand-title mb-1 text-main">
                 Settlement Plan — {settlementData?.tripName}
               </h2>
-              <p className="text-secondary small mb-0">
+              <p className="text-muted-custom small mb-0">
                 Minimum transaction debt settlement algorithm output
               </p>
             </div>

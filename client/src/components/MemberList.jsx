@@ -1,14 +1,14 @@
 import React from 'react';
-import { Card, Button, Badge } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { UserPlus, User, Trash2 } from 'lucide-react';
 import { getInitials } from '../utils/formatters';
 
 const MemberList = ({ members = [], isOwner, onAddClick, onDeleteMember }) => {
   return (
-    <Card className="glass-card border-0 text-light p-3">
+    <Card className="glass-card border-0 p-3">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h6 className="fw-bold text-light mb-0 d-flex align-items-center gap-2">
-          <User size={18} className="text-indigo-400" style={{ color: '#818cf8' }} />
+        <h6 className="fw-bold text-main mb-0 d-flex align-items-center gap-2">
+          <User size={18} style={{ color: '#6366f1' }} />
           Trip Participants ({members.length})
         </h6>
         <Button
@@ -26,7 +26,7 @@ const MemberList = ({ members = [], isOwner, onAddClick, onDeleteMember }) => {
           <div
             key={member._id || index}
             className="d-flex justify-content-between align-items-center p-2 rounded-3"
-            style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.05)' }}
+            style={{ background: 'var(--feature-card-bg)', border: '1px solid var(--feature-card-border)' }}
           >
             <div className="d-flex align-items-center gap-2">
               <div
@@ -42,9 +42,9 @@ const MemberList = ({ members = [], isOwner, onAddClick, onDeleteMember }) => {
                 {getInitials(member.name)}
               </div>
               <div>
-                <div className="fw-semibold text-light small lh-1">{member.name}</div>
+                <div className="fw-semibold text-main small lh-1">{member.name}</div>
                 {member.mobileNumber && (
-                  <div className="text-secondary micro-text" style={{ fontSize: '0.75rem' }}>
+                  <div className="text-muted-custom micro-text" style={{ fontSize: '0.75rem' }}>
                     📱 {member.mobileNumber}
                   </div>
                 )}

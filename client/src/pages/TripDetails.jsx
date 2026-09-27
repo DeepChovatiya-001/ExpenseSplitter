@@ -11,7 +11,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import ConfirmDialog from '../components/ConfirmDialog';
 import { formatCurrency, formatDate } from '../utils/formatters';
-import { ArrowLeft, PlusCircle, UserPlus, Calculator, Trash2, Receipt } from 'lucide-react';
+import { ArrowLeft, PlusCircle, Calculator, Trash2, Receipt } from 'lucide-react';
 
 const TripDetails = () => {
   const { id: tripId } = useParams();
@@ -126,7 +126,7 @@ const TripDetails = () => {
             as={Link}
             to="/dashboard"
             variant="link"
-            className="text-secondary p-0 text-decoration-none d-flex align-items-center gap-1"
+            className="text-muted-custom p-0 text-decoration-none d-flex align-items-center gap-1"
           >
             <ArrowLeft size={18} /> Back to Dashboard
           </Button>
@@ -136,7 +136,7 @@ const TripDetails = () => {
               variant="outline-danger"
               size="sm"
               onClick={() => setShowDeleteTripDialog(true)}
-              className="d-flex align-items-center gap-1 px-3"
+              className="d-flex align-items-center gap-1 px-3 rounded-3"
             >
               <Trash2 size={14} /> Delete Trip
             </Button>
@@ -146,17 +146,17 @@ const TripDetails = () => {
         <ErrorMessage message={error} onClose={() => setError('')} />
 
         {/* Trip Summary Banner */}
-        <Card className="glass-card border-0 text-light p-4 mb-4">
+        <Card className="glass-card border-0 p-4 mb-4">
           <div className="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
             <div>
               <div className="d-flex align-items-center gap-2 mb-2">
-                <h2 className="fw-bold brand-title mb-0 text-light">{trip.name}</h2>
-                <Badge bg="indigo" className="px-3 py-1 rounded-pill" style={{ backgroundColor: '#4f46e5' }}>
+                <h2 className="fw-bold brand-title mb-0 text-main">{trip.name}</h2>
+                <Badge className="px-3 py-1 rounded-pill fw-semibold" style={{ background: 'var(--badge-bg)', color: 'var(--badge-text)', border: '1px solid var(--badge-border)' }}>
                   {trip.currency || 'INR'}
                 </Badge>
               </div>
-              {trip.description && <p className="text-secondary mb-2">{trip.description}</p>}
-              <div className="text-secondary micro-text" style={{ fontSize: '0.8rem' }}>
+              {trip.description && <p className="text-muted-custom mb-2">{trip.description}</p>}
+              <div className="text-muted-custom micro-text" style={{ fontSize: '0.8rem' }}>
                 Created on {formatDate(trip.createdAt)}
               </div>
             </div>
@@ -173,9 +173,9 @@ const TripDetails = () => {
               <Button
                 as={Link}
                 to={`/trips/${tripId}/settlement`}
-                className="btn-secondary-gradient d-flex align-items-center gap-2 py-2 px-3 text-light"
+                className="btn-secondary-gradient d-flex align-items-center gap-2 py-2 px-3 text-main"
               >
-                <Calculator size={18} className="text-indigo-400" style={{ color: '#818cf8' }} />
+                <Calculator size={18} style={{ color: '#6366f1' }} />
                 <span>View Settlement</span>
               </Button>
             </div>
@@ -185,17 +185,17 @@ const TripDetails = () => {
         <Row className="g-4">
           {/* Main Expense List */}
           <Col lg={8}>
-            <Card className="glass-card border-0 text-light p-3 mb-4">
+            <Card className="glass-card border-0 p-3 mb-4">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                  <h5 className="fw-bold text-light mb-0 d-flex align-items-center gap-2">
-                    <Receipt size={20} className="text-indigo-400" style={{ color: '#818cf8' }} />
+                  <h5 className="fw-bold text-main mb-0 d-flex align-items-center gap-2">
+                    <Receipt size={20} style={{ color: '#6366f1' }} />
                     Expenses ({trip.expenses?.length || 0})
                   </h5>
                 </div>
                 <div className="text-end">
-                  <span className="text-secondary small me-2">Total:</span>
-                  <span className="fw-bold fs-5 text-emerald-400" style={{ color: '#34d399' }}>
+                  <span className="text-muted-custom small me-2">Total:</span>
+                  <span className="fw-bold fs-5" style={{ color: '#10b981' }}>
                     {formatCurrency(trip.totalExpense || 0, trip.currency)}
                   </span>
                 </div>
@@ -203,9 +203,9 @@ const TripDetails = () => {
 
               {trip.expenses?.length === 0 ? (
                 <div className="text-center py-5">
-                  <Receipt size={40} className="text-secondary opacity-50 mb-2" />
-                  <h6 className="fw-bold text-light">No Expenses Recorded Yet</h6>
-                  <p className="text-secondary small mb-3">Add your first expense to begin tracking and calculating settlements.</p>
+                  <Receipt size={40} className="text-muted-custom opacity-50 mb-2" />
+                  <h6 className="fw-bold text-main">No Expenses Recorded Yet</h6>
+                  <p className="text-muted-custom small mb-3">Add your first expense to begin tracking and calculating settlements.</p>
                   <Button
                     size="sm"
                     className="btn-primary-gradient px-3"

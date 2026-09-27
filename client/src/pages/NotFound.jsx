@@ -10,13 +10,13 @@ const NotFound = () => {
       <Navbar />
 
       <Container className="mt-5 text-center" style={{ maxWidth: '500px' }}>
-        <Card className="glass-card border-0 text-light p-5">
-          <div className="d-inline-flex justify-content-center mb-3 text-indigo-400" style={{ color: '#818cf8' }}>
+        <Card className="glass-card border-0 p-5">
+          <div className="d-inline-flex justify-content-center mb-3" style={{ color: '#6366f1' }}>
             <HelpCircle size={64} />
           </div>
 
-          <h2 className="fw-bold brand-title mb-2">404 — Page Not Found</h2>
-          <p className="text-secondary small mb-4">
+          <h2 className="fw-bold brand-title mb-2 text-main">404 — Page Not Found</h2>
+          <p className="text-muted-custom small mb-4">
             The page or trip you are looking for does not exist or has been moved.
           </p>
 

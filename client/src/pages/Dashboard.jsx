@@ -41,13 +41,13 @@ const Dashboard = () => {
 
       <Container className="mt-4">
         {/* Welcome Header */}
-        <Card className="glass-card border-0 text-light p-4 mb-4">
+        <Card className="glass-card border-0 p-4 mb-4">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
             <div>
-              <h2 className="fw-bold brand-title mb-1">
-                Welcome, <span style={{ color: '#818cf8' }}>{user?.name || 'Friend'}</span> 👋
+              <h2 className="fw-bold brand-title mb-1 text-main">
+                Welcome, <span style={{ color: '#6366f1' }}>{user?.name || 'Friend'}</span> 👋
               </h2>
-              <p className="text-secondary mb-0">
+              <p className="text-muted-custom mb-0">
                 Track group expenses, calculate shares, and settle debts with minimum transactions.
               </p>
             </div>
@@ -66,13 +66,13 @@ const Dashboard = () => {
           {/* Main Trips Section */}
           <Col lg={8} xl={9}>
             <div className="d-flex justify-content-between align-items-center mb-3">
-              <h5 className="fw-bold text-light mb-0 d-flex align-items-center gap-2">
-                <Compass size={20} className="text-indigo-400" style={{ color: '#818cf8' }} />
+              <h5 className="fw-bold text-main mb-0 d-flex align-items-center gap-2">
+                <Compass size={20} style={{ color: '#6366f1' }} />
                 My Trips & Events ({trips.length})
               </h5>
               <Button
                 variant="link"
-                className="text-secondary p-0 text-decoration-none small d-flex align-items-center gap-1"
+                className="text-muted-custom p-0 text-decoration-none small d-flex align-items-center gap-1"
                 onClick={fetchTrips}
               >
                 <RefreshCw size={14} /> Refresh
@@ -84,16 +84,16 @@ const Dashboard = () => {
             {loading ? (
               <LoadingSpinner message="Fetching trips..." />
             ) : trips.length === 0 ? (
-              <Card className="glass-card border-0 text-center text-light p-5 my-3">
+              <Card className="glass-card border-0 text-center p-5 my-3">
                 <div className="py-4">
                   <div
                     className="d-inline-flex align-items-center justify-content-center rounded-circle p-4 mb-3"
-                    style={{ background: 'rgba(99, 102, 241, 0.1)' }}
+                    style={{ background: 'var(--badge-bg)' }}
                   >
-                    <Compass size={48} className="text-indigo-400" style={{ color: '#818cf8' }} />
+                    <Compass size={48} style={{ color: '#6366f1' }} />
                   </div>
-                  <h5 className="fw-bold text-light">No Trips Created Yet</h5>
-                  <p className="text-secondary small max-w-400 mx-auto mb-4">
+                  <h5 className="fw-bold text-main">No Trips Created Yet</h5>
+                  <p className="text-muted-custom small max-w-400 mx-auto mb-4">
                     Create your first trip or event for vacations, parties, roommates, or college outings to start splitting expenses.
                   </p>
                   <Button

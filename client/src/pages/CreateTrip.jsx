@@ -44,7 +44,6 @@ const CreateTrip = () => {
 
     try {
       setSubmitting(true);
-      // Clean member inputs
       const initialMembers = members
         .filter(m => m.name && m.name.trim())
         .map(m => ({ name: m.name.trim(), mobileNumber: m.mobileNumber ? m.mobileNumber.trim() : '' }));
@@ -76,23 +75,23 @@ const CreateTrip = () => {
             as={Link}
             to="/dashboard"
             variant="link"
-            className="text-secondary p-0 text-decoration-none d-flex align-items-center gap-1"
+            className="text-muted-custom p-0 text-decoration-none d-flex align-items-center gap-1"
           >
             <ArrowLeft size={18} /> Back to Dashboard
           </Button>
         </div>
 
-        <Card className="glass-card border-0 text-light p-4">
-          <div className="d-flex align-items-center gap-2 mb-4">
+        <Card className="glass-card border-0 p-4">
+          <div className="d-flex align-items-center gap-3 mb-4">
             <div
-              className="d-flex align-items-center justify-content-center rounded-3 p-2"
+              className="d-flex align-items-center justify-content-center rounded-3 p-3 shadow-sm"
               style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)' }}
             >
               <Compass size={24} className="text-white" />
             </div>
             <div>
-              <h3 className="fw-bold brand-title mb-0">Create New Trip / Event</h3>
-              <p className="text-secondary small mb-0">Set up a group trip, party, or shared living expense space</p>
+              <h3 className="fw-bold brand-title mb-0 text-main">Create New Trip / Event</h3>
+              <p className="text-muted-custom small mb-0">Set up a group trip, party, or shared living expense space</p>
             </div>
           </div>
 
@@ -122,10 +121,10 @@ const CreateTrip = () => {
                     onChange={(e) => setCurrency(e.target.value)}
                     className="form-control-custom"
                   >
-                    <option value="INR" style={{ backgroundColor: '#0f172a', color: '#fff' }}>INR (₹)</option>
-                    <option value="USD" style={{ backgroundColor: '#0f172a', color: '#fff' }}>USD ($)</option>
-                    <option value="EUR" style={{ backgroundColor: '#0f172a', color: '#fff' }}>EUR (€)</option>
-                    <option value="GBP" style={{ backgroundColor: '#0f172a', color: '#fff' }}>GBP (£)</option>
+                    <option value="INR" style={{ background: 'var(--card-bg-solid)', color: 'var(--text-main)' }}>INR (₹)</option>
+                    <option value="USD" style={{ background: 'var(--card-bg-solid)', color: 'var(--text-main)' }}>USD ($)</option>
+                    <option value="EUR" style={{ background: 'var(--card-bg-solid)', color: 'var(--text-main)' }}>EUR (€)</option>
+                    <option value="GBP" style={{ background: 'var(--card-bg-solid)', color: 'var(--text-main)' }}>GBP (£)</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -152,15 +151,15 @@ const CreateTrip = () => {
                   </Form.Label>
                   <Button
                     variant="link"
-                    className="p-0 text-indigo-400 small text-decoration-none d-flex align-items-center gap-1"
+                    className="p-0 small text-decoration-none d-flex align-items-center gap-1"
                     onClick={handleAddMemberRow}
-                    style={{ color: '#818cf8' }}
+                    style={{ color: 'var(--link-color)' }}
                   >
                     <UserPlus size={16} /> + Add Another
                   </Button>
                 </div>
 
-                <p className="text-secondary micro-text mb-3" style={{ fontSize: '0.8rem' }}>
+                <p className="text-muted-custom micro-text mb-3" style={{ fontSize: '0.8rem' }}>
                   You (logged-in user) are automatically added as the trip creator. Add other friends below!
                 </p>
 

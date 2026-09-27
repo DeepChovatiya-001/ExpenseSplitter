@@ -85,10 +85,10 @@ const ExpenseForm = ({ show, onHide, members = [], currency = 'INR', onSubmit })
     : 0;
 
   return (
-    <Modal show={show} onHide={onHide} centered size="lg" contentClassName="glass-card text-light border-0">
-      <Modal.Header closeButton closeVariant="white" className="border-secondary">
-        <Modal.Title className="d-flex align-items-center gap-2 h5 mb-0">
-          <PlusCircle size={20} className="text-indigo-400" style={{ color: '#818cf8' }} />
+    <Modal show={show} onHide={onHide} centered size="lg" contentClassName="glass-card border-0">
+      <Modal.Header closeButton className="border-bottom theme-divider">
+        <Modal.Title className="d-flex align-items-center gap-2 h5 mb-0 text-main">
+          <PlusCircle size={20} style={{ color: '#6366f1' }} />
           Add Expense
         </Modal.Title>
       </Modal.Header>
@@ -137,7 +137,7 @@ const ExpenseForm = ({ show, onHide, members = [], currency = 'INR', onSubmit })
                   className="form-control-custom"
                 >
                   {members.map((m, idx) => (
-                    <option key={m._id || idx} value={m.name} style={{ backgroundColor: '#0f172a', color: '#fff' }}>
+                    <option key={m._id || idx} value={m.name} style={{ background: 'var(--card-bg-solid)', color: 'var(--text-main)' }}>
                       {m.name} {m.mobileNumber ? `(${m.mobileNumber})` : ''}
                     </option>
                   ))}
@@ -153,7 +153,7 @@ const ExpenseForm = ({ show, onHide, members = [], currency = 'INR', onSubmit })
                   onChange={(e) => setSplitType(e.target.value)}
                   className="form-control-custom"
                 >
-                  <option value="equal" style={{ backgroundColor: '#0f172a', color: '#fff' }}>Equal Split</option>
+                  <option value="equal" style={{ background: 'var(--card-bg-solid)', color: 'var(--text-main)' }}>Equal Split</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -163,37 +163,35 @@ const ExpenseForm = ({ show, onHide, members = [], currency = 'INR', onSubmit })
                 <Form.Label className="form-label-custom mb-0">Split Between ({participants.length} selected)</Form.Label>
                 <Button
                   variant="link"
-                  className="p-0 text-indigo-400 small text-decoration-none"
-                  style={{ color: '#818cf8' }}
+                  className="p-0 small text-decoration-none"
+                  style={{ color: 'var(--link-color)' }}
                   onClick={selectAllParticipants}
                 >
                   Select All
                 </Button>
               </div>
 
-              <div className="p-3 rounded-3" style={{ background: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div className="p-3 rounded-3" style={{ background: 'var(--feature-card-bg)', border: '1px solid var(--feature-card-border)' }}>
                 <Row className="g-2">
                   {members.map((m, idx) => {
                     const isChecked = participants.includes(m.name);
                     return (
                       <Col key={m._id || idx} xs={6} sm={4}>
                         <div
-                          className={`d-flex align-items-center gap-2 p-2 rounded-2 cursor-pointer transition-all ${
-                            isChecked ? 'bg-indigo-900-30 border-indigo-500' : ''
-                          }`}
+                          className="d-flex align-items-center gap-2 p-2 rounded-2 cursor-pointer transition-all"
                           style={{
-                            background: isChecked ? 'rgba(79, 70, 229, 0.2)' : 'rgba(255, 255, 255, 0.02)',
-                            border: `1px solid ${isChecked ? 'rgba(99, 102, 241, 0.5)' : 'rgba(255, 255, 255, 0.05)'}`,
+                            background: isChecked ? 'var(--badge-bg)' : 'transparent',
+                            border: `1px solid ${isChecked ? 'var(--badge-border)' : 'var(--card-border)'}`,
                             cursor: 'pointer'
                           }}
                           onClick={() => toggleParticipant(m.name)}
                         >
                           {isChecked ? (
-                            <CheckSquare size={18} className="text-indigo-400" style={{ color: '#818cf8' }} />
+                            <CheckSquare size={18} style={{ color: '#6366f1' }} />
                           ) : (
-                            <Square size={18} className="text-secondary" />
+                            <Square size={18} className="text-muted-custom" />
                           )}
-                          <span className="small text-light text-truncate">{m.name}</span>
+                          <span className="small text-main text-truncate">{m.name}</span>
                         </div>
                       </Col>
                     );
@@ -202,7 +200,7 @@ const ExpenseForm = ({ show, onHide, members = [], currency = 'INR', onSubmit })
               </div>
 
               {perPersonShare > 0 && (
-                <div className="mt-3 p-2 px-3 rounded-2 text-center" style={{ background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.2)', color: '#38bdf8' }}>
+                <div className="mt-3 p-2 px-3 rounded-2 text-center" style={{ background: 'var(--badge-bg)', border: '1px solid var(--badge-border)', color: 'var(--link-color)' }}>
                   Each person pays: <strong>{formatCurrency(perPersonShare, currency)}</strong>
                 </div>
               )}
@@ -210,7 +208,7 @@ const ExpenseForm = ({ show, onHide, members = [], currency = 'INR', onSubmit })
           </Row>
         </Modal.Body>
 
-        <Modal.Footer className="border-secondary">
+        <Modal.Footer className="border-top theme-divider">
           <Button variant="secondary" onClick={onHide} className="btn-secondary-gradient">
             Cancel
           </Button>

@@ -31,10 +31,10 @@ const MemberForm = ({ show, onHide, onSubmit }) => {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered contentClassName="glass-card text-light border-0">
-      <Modal.Header closeButton closeVariant="white" className="border-secondary">
-        <Modal.Title className="d-flex align-items-center gap-2 h5 mb-0">
-          <UserPlus size={20} className="text-indigo-400" style={{ color: '#818cf8' }} />
+    <Modal show={show} onHide={onHide} centered contentClassName="glass-card border-0">
+      <Modal.Header closeButton className="border-bottom theme-divider">
+        <Modal.Title className="d-flex align-items-center gap-2 h5 mb-0 text-main">
+          <UserPlus size={20} style={{ color: '#6366f1' }} />
           Add Trip Member
         </Modal.Title>
       </Modal.Header>
@@ -64,13 +64,13 @@ const MemberForm = ({ show, onHide, onSubmit }) => {
               onChange={(e) => setMobileNumber(e.target.value)}
               className="form-control-custom"
             />
-            <Form.Text className="text-secondary small">
+            <Form.Text className="text-muted-custom small">
               Members do not need an account to participate in trips.
             </Form.Text>
           </Form.Group>
         </Modal.Body>
 
-        <Modal.Footer className="border-secondary">
+        <Modal.Footer className="border-top theme-divider">
           <Button variant="secondary" onClick={onHide} className="btn-secondary-gradient">
             Cancel
           </Button>
