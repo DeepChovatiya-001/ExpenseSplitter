@@ -21,7 +21,16 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health Check / Root route
+// Root Route & Health Check
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Expense Splitter Backend Server API',
+    status: 'online',
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.get('/api', (req, res) => {
   res.json({
     success: true,
@@ -41,6 +50,10 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`[Expense Splitter Backend] Server listening on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode.`);
-});
+if (process.env.NODE_ENV !== 'test' && (require.main === module || !process.env.VERCEL)) {
+  app.listen(PORT, () => {
+    console.log(`[Expense Splitter Backend] Server listening on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode.`);
+  });
+}
+
+module.exports = app;
