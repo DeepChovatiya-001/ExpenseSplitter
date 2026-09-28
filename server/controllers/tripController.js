@@ -63,14 +63,18 @@ const createTrip = async (req, res) => {
 // @access  Private
 const getTrips = async (req, res) => {
   try {
-    // User is owner OR user's mobile is in trip members OR user's display name is in trip members
-    const trips = await Trip.find({
-      $or: [
+    // User is owner OR user's mobile number is in trip members
+    // NOTE: Name matching is intentionally excluded to prevent trips from showing
+    // up for users who happen to share the same name as a member in another user's trip.
+    const query = { createdBy: req.user._id };
+    if (req.user.mobileNumber) {
+      query.$or = [
         { createdBy: req.user._id },
-        { 'members.mobileNumber': req.user.mobileNumber },
-        { 'members.name': req.user.name }
-      ]
-    }).sort({ createdAt: -1 });
+        { 'members.mobileNumber': req.user.mobileNumber }
+      ];
+      delete query.createdBy;
+    }
+    const trips = await Trip.find(query).sort({ createdAt: -1 });
 
     // Attach summary stats (expense count, total expense)
     const tripIds = trips.map(t => t._id);
@@ -115,9 +119,10 @@ const getTripById = async (req, res) => {
 
     // Check authorization: must be creator or member
     const isOwner = trip.createdBy.toString() === req.user._id.toString();
-    const isMember = trip.members.some(
-      m => m.mobileNumber === req.user.mobileNumber || m.name.toLowerCase() === req.user.name.toLowerCase()
-    );
+    // Only match by mobileNumber (unique), not by name (not unique across users)
+    const isMember = req.user.mobileNumber
+      ? trip.members.some(m => m.mobileNumber === req.user.mobileNumber)
+      : false;
 
     if (!isOwner && !isMember) {
       return res.status(403).json({
@@ -238,9 +243,10 @@ const getSettlement = async (req, res) => {
 
     // Check authorization
     const isOwner = trip.createdBy.toString() === req.user._id.toString();
-    const isMember = trip.members.some(
-      m => m.mobileNumber === req.user.mobileNumber || m.name.toLowerCase() === req.user.name.toLowerCase()
-    );
+    // Only match by mobileNumber (unique), not by name (not unique across users)
+    const isMember = req.user.mobileNumber
+      ? trip.members.some(m => m.mobileNumber === req.user.mobileNumber)
+      : false;
 
     if (!isOwner && !isMember) {
       return res.status(403).json({
